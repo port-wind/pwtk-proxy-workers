@@ -1,0 +1,23 @@
+#:schema node_modules/wrangler/config-schema.json
+main = "src/index.tsx"
+compatibility_date = "2024-09-09"
+
+[env.dev]
+name = "pwtk-proxy-workers"
+vars = { CID_CURRENT_SECRET_KEY_VERSION = "1" }
+durable_objects.bindings = [
+    { name = "NOTIFICATIONS", class_name = "Notifications" },
+    { name = "CIDMANAGER", class_name = "CIDManager" },
+]
+
+[env.prod]
+name = "pwtk-proxy-workers_prod"
+vars = { CID_CURRENT_SECRET_KEY_VERSION = "1" }
+durable_objects.bindings = [
+    { name = "NOTIFICATIONS", class_name = "Notifications" },
+    { name = "CIDMANAGER", class_name = "CIDManager" },
+]
+
+[[migrations]]
+tag = "v3"
+new_classes = ["CIDManager", "Notifications"]
